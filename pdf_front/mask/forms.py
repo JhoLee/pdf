@@ -22,7 +22,7 @@ class PostForm(ModelForm):
         self.fields['title'].widget.attrs['maxlength'] = 30
         self.fields['author'].widget.attrs['maxlength'] = 10
         self.fields['password'].widget.attrs['maxlength'] = 20
-        self.fields['image'].required = False
+        self.fields['image'].required = True
 
     def save(self, commit=True):
         self.instance = Post(**self.cleaned_data)

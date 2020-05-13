@@ -4,29 +4,35 @@
 {% endblock title %}
 {% block container %}
 
-        <h1>Sample</h1>
+    <h1>Sample</h1>
 
-        <div id="post-list-group" class="list-group">
-            <div class="list-group-item list-group-item-action active">
-                <h3 class="align-items-center">List</h3>
-            </div>
+    <a href="{% url 'mask:post' %}">
+        <button type="button" class="btn btn-lg btn-outline-success btn-block">New</button>
+    </a>
 
-            {% for item in posts %}
-                <a href="{% url 'mask:detail' item.id %}" class="list-group-item list-group-item-action">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">{{ item.id }}</h5>
-                        <small>{{ item.reg_date }}</small>
-                    </div>
-                    {% if item.mod_date %}
-                        <p class="mb-1">{{ item.status }} - {{ item.mod_date }}</p>
-                    {% else %}
-                        {# todo: Replace with status.label #}
-                        <p class="mb-1">{{ item.status }}</p>
-                    {% endif %}
-                    <small>{{ item.author }}</small>
-                </a>
-            {% endfor %}
+    <hr class="my-1">
 
+    <div id="post-list-group" class="list-group">
+        <div class="list-group-item list-group-item-action active">
+            <h3 class="align-items-center">List</h3>
         </div>
+
+        {% for item in posts %}
+            <a href="{% url 'mask:detail' item.id %}" class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">{{ item.id }}</h5>
+                    <small>{{ item.reg_date }}</small>
+                </div>
+                {% if item.mod_date %}
+                    <p class="mb-1">{{ item.status }} - {{ item.mod_date }}</p>
+                {% else %}
+                    {# todo: Replace with status.label #}
+                    <p class="mb-1">{{ item.status }}</p>
+                {% endif %}
+                <small>{{ item.author }}</small>
+            </a>
+        {% endfor %}
+
+    </div>
 
 {% endblock container %}

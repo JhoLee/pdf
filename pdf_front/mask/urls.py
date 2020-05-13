@@ -8,5 +8,6 @@ urlpatterns = [
     path('', views.IndexView.as_view(), name='index'),
     path('post/', views.PostFormView.as_view(), name='post'),
     path('post/<int:pk>/', views.PostDetailView.as_view(), name='detail'),
+    path('post/<int:pk>/delete', views.delete_post, name='delete'),
 
 ]

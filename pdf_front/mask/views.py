@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 
 from django.http import HttpResponse
 from django.views.generic import ListView, DetailView, View, FormView
@@ -7,7 +7,7 @@ from .forms import PostForm
 from .models import Post
 
 
-def index(req):
+def index(req, **kwargs):
     return render(req, 'mask/index.html')
 
 
@@ -27,7 +27,8 @@ class PostDetailView(DetailView):
 class PostFormView(FormView):
     def get(self, request, **kwargs):
         form = PostForm()
-        return render(request, 'mask/request.html', {'form': form})
+        context = {'form': form}
+        return render(request, 'mask/post.html', context=context)
 
     def post(self, request, **kwargs):
         form = PostForm(request.POST, request.FILES)
@@ -38,3 +39,17 @@ class PostFormView(FormView):
             post.save()
             pk = post.pk
             return redirect('mask:detail', pk=pk)
+
+
+def delete_post(req, pk):
+    try:
+        post = Post.objects.get(pk=pk)
+        post.delete()
+        msg = "INFO: Deleted."
+    except Exception:
+        msg = "WARN: The post was not found."
+
+    context = {
+        'alert': msg
+    }
+    return redirect('mask:index')
