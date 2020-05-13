@@ -29,7 +29,7 @@
             <dd class="col-sm-4">{{ post.author }}</dd>
 
             <dt class="col-sm-2">status</dt>
-            <dd class="col-sm-4">{{ post.status }}</dd>
+            <dd class="col-sm-4">{{ post.get_status_display }}</dd>
 
             <dt class="col-sm-2">mod_date</dt>
             {% if post.mod_date %}

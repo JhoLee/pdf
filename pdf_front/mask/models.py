@@ -18,6 +18,7 @@ class Post(models.Model):
     author = models.CharField(max_length=10)
     password = models.CharField(max_length=20)
     image = models.ImageField(default=None, upload_to='origin/%Y/%m/%d', null=True)
+    mask_method = models.CharField
     result_image = models.ImageField(blank=True, upload_to='mask/%Y/%m/%d')
     status = models.CharField(
         max_length=2,

@@ -24,10 +24,9 @@
                     <small>{{ item.reg_date }}</small>
                 </div>
                 {% if item.mod_date %}
-                    <p class="mb-1">{{ item.status }} - {{ item.mod_date }}</p>
+                    <p class="mb-1">{{ item.get_status_display }} - {{ item.mod_date }}</p>
                 {% else %}
-                    {# todo: Replace with status.label #}
-                    <p class="mb-1">{{ item.status }}</p>
+                    <p class="mb-1">{{ item.get_status_display }}</p>
                 {% endif %}
                 <small>{{ item.author }}</small>
             </a>
