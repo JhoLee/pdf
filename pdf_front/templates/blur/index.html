@@ -1,0 +1,33 @@
+{% extends "blur/base.html" %}
+{% block title %}
+    {{ block.super }} :: blur
+{% endblock title %}
+{% block container %}
+
+    <div class="container">
+        <h1>Sample</h1>
+
+        <div id="request-list-group" class="list-group">
+            <div class="list-group-item list-group-item-action active">
+                <h3 class="align-items-center">List</h3>
+            </div>
+
+            {% for item in requests %}
+                <a href="{% url 'blur:detail' item.id %}" class="list-group-item list-group-item-action">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">{{ item.id }}</h5>
+                        <small>{{ item.reg_date }}</small>
+                    </div>
+                    {% if item.mod_date %}
+                        <p class="mb-1">{{ item.status }} - {{ item.mod_date }}</p>
+                    {% else %}
+                        {# todo: Replace with status.label #}
+                        <p class="mb-1">{{ item.status }}</p>
+                    {% endif %}
+                    <small>{{ item.author }}</small>
+                </a>
+            {% endfor %}
+
+        </div>
+    </div>
+{% endblock container %}
