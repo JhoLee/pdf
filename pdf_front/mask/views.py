@@ -1,10 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from django.http import HttpResponse
 from django.views.generic import ListView, DetailView, View, FormView
 
-from .forms import RequestForm
-from .models import Request
+from .forms import PostForm
+from .models import Post
 
 
 def index(req):
@@ -13,27 +13,28 @@ def index(req):
 
 class IndexView(ListView):
     template_name = 'mask/index.html'
-    context_object_name = 'requests'
+    context_object_name = 'posts'
 
     def get_queryset(self):
-        return Request.objects.order_by('-reg_date')[:5]
+        return Post.objects.order_by('-reg_date')[:5]
 
 
-class RequestDetailView(DetailView):
-    model = Request
-    template_name = 'mask/index.html'
+class PostDetailView(DetailView):
+    model = Post
+    template_name = 'mask/detail.html'
 
 
-class RequestFormView(FormView):
+class PostFormView(FormView):
     def get(self, request, **kwargs):
-        form = RequestForm()
+        form = PostForm()
         return render(request, 'mask/request.html', {'form': form})
 
+    def post(self, request, **kwargs):
+        form = PostForm(request.POST, request.FILES)
+        if form.is_valid():
+            post = form.save(commit=False)
+            #
 
-class _RequestFormView(FormView):
-    form_class = RequestForm
-    template_name = 'mask/request.html'
-    success_url = '/'
-
-    def form_valid(self, form):
-        return super(RequestFormView, self).form_valid(form)
+            post.save()
+            pk = post.pk
+            return redirect('mask:detail', pk=pk)

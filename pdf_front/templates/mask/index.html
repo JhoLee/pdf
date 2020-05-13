@@ -4,15 +4,14 @@
 {% endblock title %}
 {% block container %}
 
-    <div class="container">
         <h1>Sample</h1>
 
-        <div id="request-list-group" class="list-group">
+        <div id="post-list-group" class="list-group">
             <div class="list-group-item list-group-item-action active">
                 <h3 class="align-items-center">List</h3>
             </div>
 
-            {% for item in requests %}
+            {% for item in posts %}
                 <a href="{% url 'mask:detail' item.id %}" class="list-group-item list-group-item-action">
                     <div class="d-flex w-100 justify-content-between">
                         <h5 class="mb-1">{{ item.id }}</h5>
@@ -29,5 +28,5 @@
             {% endfor %}
 
         </div>
-    </div>
+
 {% endblock container %}

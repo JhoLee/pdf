@@ -5,7 +5,7 @@ from django.dispatch import receiver
 from django.utils.translation import gettext_lazy as _
 
 
-class Request(models.Model):
+class Post(models.Model):
     class Status(models.TextChoices):
         STAND_BY = 'SB', _('Stand-by')
         PROCESSING = 'PR', _('Processing')
@@ -14,10 +14,11 @@ class Request(models.Model):
         DELETE_USER = 'DU', _('Deleted by User')
         EXPIRED = 'EX', _('Expired')
 
-    title = models.CharField(max_length=100)
+    title = models.CharField(max_length=30)
     author = models.CharField(max_length=10)
-    password = models.CharField(max_length=30)
-    content = models.TextField(max_length=300)  # TODO: replace with photo
+    password = models.CharField(max_length=20)
+    image = models.ImageField(default=None, upload_to='origin/%Y/%m/%d', null=True)
+    result_image = models.ImageField(blank=True, upload_to='mask/%Y/%m/%d')
     status = models.CharField(
         max_length=2,
         choices=Status.choices,
@@ -27,8 +28,7 @@ class Request(models.Model):
     mod_date = models.DateTimeField(blank=True, null=True)
 
 
-
-@receiver(pre_save, sender=Request)
-def password_hashing(instance, **kwargs):
-    if not is_password_usable(instance.password):
-        instance.password = make_password(instance.password)
+# @receiver(pre_save, sender=Request)
+# def password_hashing(instance, **kwargs):
+#     if not is_password_usable(instance.password):
+#         instance.password = make_password(instance.password)
