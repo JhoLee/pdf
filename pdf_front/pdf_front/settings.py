@@ -128,4 +128,4 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 if not os.path.exists(MEDIA_ROOT):
     os.makedirs(MEDIA_ROOT)
-print(MEDIA_ROOT)
+print("MEDIA_ROOT:", MEDIA_ROOT)

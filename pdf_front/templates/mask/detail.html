@@ -1,6 +1,7 @@
 {% extends "mask/base.html" %}
 
 {% load static %}
+{% load template_utils %}
 
 {% block title %}
     {{ block.super }} :: blur
@@ -12,6 +13,7 @@
 {% endblock breadcrumb %}
 
 {% block container %}
+
     {% if post.result_image %}
         <a href="{{ post.result_image.url }}">
             <button type="button" class="btn btn-lg btn-block btn-success">Download Result</button>

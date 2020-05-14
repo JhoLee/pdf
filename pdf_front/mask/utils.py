@@ -22,3 +22,30 @@ def check_pw(input_pw, hashed_pw):
     :return: If match True, or False.
     """
     return bcrypt.checkpw(input_pw.encode('utf-8'), hashed_pw.encode('utf-8'))
+
+
+def set_alert(request, msg, title="", type="INFO"):
+    """
+    PRIMARY     (blue)          primary
+    NORMAL      (light black)   secondary
+    SUCCESS     (green)         success
+    DANGER      (red)           danger
+    WARN        (yellow)        warning
+    INFO        (light blue)    info
+    HELP        (light gray)    light
+    DARK        (black)         dark
+    """
+    request.session['alert'] = {
+        'title': title,
+        'msg': msg,
+        'type': type.lower()
+    }
+
+
+def get_alert(request):
+    if request.session['alert']:
+        alert = request.session['alert']
+        request.session['alert'] = None
+        return alert
+    else:
+        return None

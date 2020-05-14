@@ -1,20 +1,23 @@
 {% extends "mask/base.html" %}
+
+{% load template_utils %}
+
 {% block title %}
     {{ block.super }} :: blur
 {% endblock title %}
+
 {% block container %}
 
-    <h1>Sample</h1>
 
     <a href="{% url 'mask:post' %}">
-        <button type="button" class="btn btn-lg btn-outline-success btn-block">New</button>
+        <button type="button" class="btn btn-lg btn-outline-success btn-block">요청하기</button>
     </a>
 
     <hr class="my-1">
 
     <div id="post-list-group" class="list-group">
         <div class="list-group-item list-group-item-action active">
-            <h3 class="align-items-center">List</h3>
+            <h3 class="align-items-center">요청 목록</h3>
         </div>
 
         {% for item in posts %}
