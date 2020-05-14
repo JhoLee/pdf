@@ -3,8 +3,10 @@ channels:
   - defaults
 dependencies:
   - asgiref=3.2.7=py_0
+  - bcrypt=3.1.7=py37h1de35cc_0
   - ca-certificates=2020.1.1=0
   - certifi=2020.4.5.1=py37_0
+  - cffi=1.14.0=py37hc512035_1
   - django=3.0.3=py_0
   - freetype=2.9.1=hb4e5f40_0
   - jpeg=9b=he5867d9_2
@@ -19,10 +21,12 @@ dependencies:
   - openssl=1.1.1g=h1de35cc_0
   - pillow=7.1.2=py37h4655f20_0
   - pip=20.0.2=py37_3
+  - pycparser=2.20=py_0
   - python=3.7.7=hf48f09d_4
   - pytz=2020.1=py_0
   - readline=8.0=h1de35cc_0
   - setuptools=46.0.0=py37_0
+  - six=1.14.0=py37_0
   - sqlite=3.31.1=h5c1f38d_1
   - sqlparse=0.3.1=py_0
   - tk=8.6.8=ha441bb4_0

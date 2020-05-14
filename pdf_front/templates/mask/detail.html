@@ -1,13 +1,16 @@
 {% extends "mask/base.html" %}
+
 {% load static %}
 
 {% block title %}
     {{ block.super }} :: blur
 {% endblock title %}
+
 {% block breadcrumb %}
     <li class="breadcrumb-item"><a href="{% url 'mask:index' %}">mask</a></li>
     <li class="breadcrumb-item active" aria-current="page">{{ post.id }}</li>
 {% endblock breadcrumb %}
+
 {% block container %}
     {% if post.result_image %}
         <a href="{{ post.result_image.url }}">
@@ -20,7 +23,9 @@
     </a>
     <hr class="my-1">
     <div class="jumbotron">
+    <small>{{ msg }}</small>
         <h3 class="display-4">{{ post.title }}</h3>
+        <hr class="my-3">
         <dl class="row">
             <dt class="col-sm-2 ">reg_date</dt>
             <dd class="col-sm-4">{{ post.reg_date }}</dd>

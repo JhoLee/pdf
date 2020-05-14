@@ -13,7 +13,7 @@ class PostForm(ModelForm):
             'author': TextInput(attrs={'class': 'form-control', 'placeholder': "10자 이내로 입력 가능합니다."}),
             'password': PasswordInput(
                 attrs={'class': 'form-control', 'placeholder': "20자 이내로 입력해주세요.", 'required': 'true'}),
-            'image': FileInput(attrs={'class': 'form-control', 'placeholder': "이미지 혹은 영상을 업로드해주세요."}),
+            'image': FileInput(attrs={'class': 'form-control-file', 'placeholder': "이미지 혹은 영상을 업로드해주세요."}),
 
         }
 

@@ -7,7 +7,7 @@ from django.utils.translation import gettext_lazy as _
 
 class Post(models.Model):
     class Status(models.TextChoices):
-        STAND_BY = 'SB', _('Stand-by')
+        STAND_BY = 'SB', _('StandBy')
         PROCESSING = 'PR', _('Processing')
         FINISH = 'FN', _('Finish')
         ERROR = 'ER', _('Error')
@@ -16,7 +16,7 @@ class Post(models.Model):
 
     title = models.CharField(max_length=30)
     author = models.CharField(max_length=10)
-    password = models.CharField(max_length=20)
+    password = models.CharField(max_length=60)
     image = models.ImageField(default=None, upload_to='origin/%Y/%m/%d', null=True)
     mask_method = models.CharField
     result_image = models.ImageField(blank=True, upload_to='mask/%Y/%m/%d')
@@ -27,6 +27,18 @@ class Post(models.Model):
     )
     reg_date = models.DateTimeField(auto_now_add=True)
     mod_date = models.DateTimeField(blank=True, null=True)
+
+    def __str__(self):
+        mod_date = self.mod_date.strftime("%Y%m%d_%H:%M:%S") if self.mod_date is not None else None
+        mod_date = "({})".format(mod_date) if mod_date is not None else ""
+        name = "{title} - {author} - {status}{mod_date} - {reg_date}".format(
+            title=self.title,
+            author=self.author,
+            status=self.status,
+            reg_date=self.reg_date.strftime("%Y%m%d_%H:%M:%S"),
+            mod_date=mod_date
+        )
+        return name
 
 
 # @receiver(pre_save, sender=Request)
