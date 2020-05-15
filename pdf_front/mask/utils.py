@@ -43,7 +43,7 @@ def set_alert(request, msg, title="", type="INFO"):
 
 
 def get_alert(request):
-    if request.session['alert']:
+    if 'alert' in request.session.keys():
         alert = request.session['alert']
         request.session['alert'] = None
         return alert
